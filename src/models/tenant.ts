@@ -1,4 +1,3 @@
 import { prisma } from "~/server/db";
 
-export const TenantModel = Object.assign(prisma.tenant, {
-});
+export const TenantModel = prisma.tenant //Object.assign(prisma.tenant, {});
