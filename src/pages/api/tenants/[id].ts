@@ -1,6 +1,7 @@
 import { getTokenFromRequest, ProtectedNextApiRoute } from '~/lib/Authentication';
 import { NextApiRequest, NextApiResponse } from "next";
-import { User, Tenant, UserType } from "~/models/";
+import { User, Tenant } from "~/models/";
+import type { TenantType } from "~/models/";
 const handler = async (
     req: NextApiRequest,
     res: NextApiResponse,

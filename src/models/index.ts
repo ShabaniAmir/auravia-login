@@ -1,3 +1,4 @@
+import { Tenant, User } from '@prisma/client';
 import { TenantModel } from './tenant';
 import { UserModel } from "./user";
 export {
