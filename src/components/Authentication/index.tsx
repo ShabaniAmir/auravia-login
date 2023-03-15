@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { User } from "@prisma/client";
 
 export type AuthContextType = {
   token: string | null;
@@ -101,9 +100,9 @@ export function useAuth() {
 
 export function useRequireAuth() {
   const router = useRouter();
-  const { token } = useAuth();
+  const { token, loading } = useAuth();
   useEffect(() => {
-    if (!token) {
+    if (!token && !loading) {
       router.push("/auth/login");
     }
   }, [token]);

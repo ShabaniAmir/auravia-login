@@ -4,3 +4,4 @@ export {
     UserModel as User,
     TenantModel as Tenant,
 }
+export type { User as UserType, Tenant as TenantType } from '@prisma/client'

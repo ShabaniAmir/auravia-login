@@ -23,7 +23,7 @@ a:active{
 }
 
 button{
-  @apply p-2 transition-all
+  @apply py-2 px-5 transition-all rounded
 }
 
 button.primary{
