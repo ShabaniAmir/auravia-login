@@ -108,3 +108,10 @@ export function useRequireAuth() {
     }
   }, [token]);
 }
+
+export function ProtectedPage({ children }: React.PropsWithChildren<{}>) {
+  useRequireAuth();
+  const { loading } = useAuth();
+  if (loading) return <></>;
+  return <>{children}</>;
+}
