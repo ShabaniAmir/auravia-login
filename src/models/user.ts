@@ -44,11 +44,11 @@ export const UserModel = Object.assign(prisma.user, {
             },
         });
         if (!user) {
-            throw new Error("User not found");
+            throw new Error("Invalid email or password");
         }
         const valid = await bcrypt.compare(password, user.password);
         if (!valid) {
-            throw new Error("Invalid password");
+            throw new Error("Invalid email or password");
         }
         return JWT.sign({
             id: user.id,
