@@ -65,7 +65,7 @@ export const UserModel = Object.assign(prisma.user, {
         if (!decoded) {
             throw new Error("Invalid token");
         }
-        return decoded;
+        return decoded as { id: string, email: string };
     }
 
 });
