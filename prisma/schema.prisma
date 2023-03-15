@@ -18,7 +18,15 @@ model User {
 }
 
 model Tenant {
-    id      String @id @default(cuid())
-    Owner   User   @relation(fields: [ownerId], references: [id])
+    id      String   @id @default(cuid())
+    Owner   User     @relation(fields: [ownerId], references: [id])
     ownerId String
+    ApiKeys ApiKey[]
+}
+
+model ApiKey {
+    id       String @id @default(cuid())
+    Tenant   Tenant @relation(fields: [tenantId], references: [id])
+    tenantId String
+    key      String @unique @default(cuid())
 }
