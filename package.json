@@ -1,0 +1,23 @@
+{
+  "name": "auravia-login",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd backend && npm run start:dev\" \"cd frontend && npm start\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShabaniAmir/auravia-login.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShabaniAmir/auravia-login/issues"
+  },
+  "homepage": "https://github.com/ShabaniAmir/auravia-login#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
