@@ -27,11 +27,21 @@ button{
 }
 
 button.primary{
-  @apply bg-blue-500 text-white
+  @apply bg-blue-700 text-white
 }
 button.primary:hover{
-  @apply bg-blue-600
+  @apply bg-blue-500
 }
 button.primary:active{
   @apply bg-blue-700
+}
+
+button.danger{
+  @apply bg-red-700 text-white
+}
+button.danger:hover{
+  @apply bg-red-500
+}
+button.danger:active{
+  @apply bg-red-700
 }

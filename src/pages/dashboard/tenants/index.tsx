@@ -37,6 +37,7 @@ export default function TenantsPage() {
                   onClick={() => {
                     deleteTenant(tenant.id);
                   }}
+                  className="danger"
                 >
                   X
                 </button>

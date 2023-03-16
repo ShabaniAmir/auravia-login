@@ -56,5 +56,9 @@ export default ProtectedNextApiRoute(async (
                 error: error.message,
             });
         }
+    } else {
+        return res.status(405).json({
+            error: "Invalid method",
+        });
     }
 });

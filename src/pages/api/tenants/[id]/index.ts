@@ -15,7 +15,29 @@ const handler = async (
         });
     }
 
-    if (req.method === "DELETE") {
+    if (req.method === "GET") {
+        const tenant = await Tenant.findUnique({
+            where: {
+                id: id,
+            },
+        });
+
+        if (!tenant) {
+            return res.status(400).json({
+                error: "Tenant not found",
+            });
+        }
+
+        if (tenant.ownerId !== user.id) {
+            return res.status(401).json({
+                error: "Unauthorized",
+            });
+        }
+
+        return res.status(200).json({
+            tenant,
+        });
+    } else if (req.method === "DELETE") {
         console.log({ id })
         if (!id) {
             return res.status(400).json({
@@ -54,6 +76,10 @@ const handler = async (
                 error: error.message,
             });
         }
+    } else {
+        return res.status(405).json({
+            error: "Invalid method",
+        });
     }
 }
 
