@@ -11,7 +11,14 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(cuid())
-  email    String @unique
+  id       String   @id @default(cuid())
+  email    String   @unique
   password String
+  Tenants  Tenant[]
+}
+
+model Tenant {
+  id      String @id @default(cuid())
+  Owner   User   @relation(fields: [ownerId], references: [id])
+  ownerId String
 }
