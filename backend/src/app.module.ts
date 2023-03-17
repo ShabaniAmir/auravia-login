@@ -6,10 +6,13 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
+import { TenantsModule } from './tenants/tenants.module';
+import { TenantsController } from './tenants/tenants.controller';
+import { TenantsService } from './tenants/tenants.service';
 
 @Module({
-  imports: [AuthModule, UsersModule],
-  controllers: [AppController, UsersController],
-  providers: [AppService, PrismaService, UsersService],
+  imports: [AuthModule, UsersModule, TenantsModule],
+  controllers: [AppController, UsersController, TenantsController],
+  providers: [AppService, PrismaService, UsersService, TenantsService],
 })
 export class AppModule { }
