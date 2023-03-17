@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,41 +8,62 @@ import { tap } from 'rxjs';
 export class UserService {
 
   token = localStorage.getItem('token');
+  registerObservable: Observable<any> | null = null;
+  loginObservable: Observable<any> | null = null;
 
   constructor(private readonly httpClient: HttpClient) { }
 
   async login(email: string, password: string) {
-    const response = await this.httpClient.post<{
+    if (this.loginObservable) {
+      return this.loginObservable;
+    }
+    this.loginObservable = this.httpClient.post<{
       token: string;
     }>("/auth/login", {
       email,
       password
     })
 
-    response.subscribe(response => {
+    this.loginObservable.subscribe(response => {
+      console.log({ response })
       localStorage.setItem('token', response.token);
     });
 
-    return response;
+    return this.loginObservable;
   }
 
   async register(email: string, password: string) {
-    const response = await this.httpClient.post<
+    if (this.registerObservable) {
+      return this.registerObservable;
+    }
+    this.registerObservable = this.httpClient.post<
       {
         user: {
           id: number,
           email: string,
         },
         token: string,
-      }>("/users", {
+      }>("/auth/register", {
         email,
         password
       })
 
-    response.subscribe(response => {
+    this.registerObservable.subscribe((response: {
+      user: {
+        id: number,
+        email: string,
+      },
+      token: string
+    }) => {
       localStorage.setItem('token', response.token);
-    });
+    }
+    );
 
-    return response;
+    return this.registerObservable;
   }
+
+  async logout() {
+    localStorage.removeItem('token');
+  }
+
 }
