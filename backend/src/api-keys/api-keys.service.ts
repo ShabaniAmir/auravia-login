@@ -14,6 +14,10 @@ export class ApiKeysService {
         return this.prisma.apiKey.findUnique({ where: { id } });
     }
 
+    async validateApiKey(apiKey: string) {
+        return this.prisma.apiKey.findUnique({ where: { key: apiKey } });
+    }
+
     async getApiKeys(filters: Prisma.ApiKeyWhereInput) {
         return this.prisma.apiKey.findMany({ where: filters });
     }
