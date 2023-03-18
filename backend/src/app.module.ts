@@ -12,9 +12,10 @@ import { TenantsService } from './tenants/tenants.service';
 import { ApiKeysModule } from './api-keys/api-keys.module';
 import { ApiKeysController } from './api-keys/api-keys.controller';
 import { ApiKeysService } from './api-keys/api-keys.service';
+import { AccountsModule } from './accounts/accounts.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, TenantsModule, ApiKeysModule],
+  imports: [AuthModule, UsersModule, TenantsModule, ApiKeysModule, AccountsModule],
   controllers: [AppController, UsersController, TenantsController, ApiKeysController],
   providers: [AppService, PrismaService, UsersService, TenantsService, ApiKeysService],
 })

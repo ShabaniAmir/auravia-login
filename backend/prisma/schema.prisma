@@ -18,10 +18,11 @@ model User {
 }
 
 model Tenant {
-  id      String   @id @default(cuid())
-  Owner   User     @relation(fields: [ownerId], references: [id])
-  ownerId String
-  ApiKeys ApiKey[]
+  id       String    @id @default(cuid())
+  Owner    User      @relation(fields: [ownerId], references: [id])
+  ownerId  String
+  ApiKeys  ApiKey[]
+  Accounts Account[]
 }
 
 model ApiKey {
@@ -31,4 +32,14 @@ model ApiKey {
   key      String @unique @default(uuid())
 
   @@index([key], name: "key")
+}
+
+model Account {
+  id         String @id @default(cuid())
+  Tenant     Tenant @relation(fields: [tenantId], references: [id])
+  tenantId   String
+  credential String
+  password   String
+
+  @@unique([tenantId, credential], name: "tenantId_credential")
 }
