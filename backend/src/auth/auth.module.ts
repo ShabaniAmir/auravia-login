@@ -1,3 +1,4 @@
+import { ApiKeysModule } from './../api-keys/api-keys.module';
 import { JwtStrategy } from './jwt.strategy';
 import { UsersModule } from './../users/users.module';
 import { Module } from '@nestjs/common';
@@ -6,6 +7,8 @@ import { LocalStrategy } from './local.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthController } from './auth.controller';
+import { TenantsModule } from 'src/tenants/tenants.module';
+import { TenantsService } from 'src/tenants/tenants.service';
 
 @Module({
   imports: [
@@ -15,6 +18,9 @@ import { AuthController } from './auth.controller';
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1d' },
     }),
+    TenantsModule,
+    ApiKeysModule,
+
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController]
