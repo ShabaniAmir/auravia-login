@@ -11,11 +11,27 @@ export class ApiKeysService {
     }
 
     async getApiKey(id: string) {
-        return this.prisma.apiKey.findUnique({ where: { id } });
+        const { secret, ...rest } = await this.prisma.apiKey.findUnique({ where: { id } });
+        return rest;
+    }
+
+
+    async getApiKeySecret(id: string) {
+        const { key, ...rest } = await this.prisma.apiKey.findUnique({ where: { id } });
+        rest.secret = "sk-" + rest.secret;
+        return rest;
     }
 
     async validateApiKey(apiKey: string) {
         return this.prisma.apiKey.findUnique({ where: { key: apiKey } });
+    }
+
+    async validateApiKeySecret(secret: string) {
+        return this.prisma.apiKey.findUnique({
+            where: {
+                secret
+            }
+        })
     }
 
     async getApiKeys(filters: Prisma.ApiKeyWhereInput) {

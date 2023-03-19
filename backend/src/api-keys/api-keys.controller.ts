@@ -34,4 +34,10 @@ export class ApiKeysController {
     async getApiKey(@Request() req, @Param('id') id: string) {
         return await this.apiKeysService.getApiKey(id);
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Get(':id/secret')
+    async getApiKeySecret(@Request() req, @Param('id') id: string) {
+        return await this.apiKeysService.getApiKeySecret(id);
+    }
 }
