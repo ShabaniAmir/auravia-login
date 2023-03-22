@@ -7,9 +7,8 @@ import { ApiUrlInterceptor } from './api-url.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
-import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-
+import { DashboardModule } from './dashboard/dashboard.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +19,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     AppRoutingModule,
     FormsModule,
     AuthModule,
+    DashboardModule,
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
