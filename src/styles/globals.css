@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+button.primary {
+    @apply bg-blue-500 text-white py-3 px-5 rounded;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    @apply  border-gray-300 py-3 px-5 pr-16 rounded-lg text-sm focus:outline-none shadow-sm;
+}
