@@ -4,6 +4,8 @@ import { DashboardComponent } from './dashboard.component';
 import { Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
 import { RouterModule } from '@angular/router';
+import { TenantsModule } from '../tenants/tenants.module';
+import { TenantsService } from '../tenants/tenants.service';
 const routes: Routes = [
   {
     path: '',
@@ -19,10 +21,11 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    TenantsModule
   ],
   providers: [
-
+    TenantsService
   ],
   exports: [
     DashboardComponent

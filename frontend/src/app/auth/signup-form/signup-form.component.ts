@@ -26,7 +26,7 @@ export class SignupFormComponent {
   async signup() {
     await (await this.userService.register(this.email, this.password)).subscribe(response => {
       if (response.token) {
-        console.log({ token: response.token })
+        this.userService.login(this.email, this.password)
         this.router.navigateByUrl('/dashboard');
       }
     });
